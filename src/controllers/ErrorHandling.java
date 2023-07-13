@@ -1,7 +1,6 @@
 package controllers;
 
 import models.DataRecord;
-import services.Quering;
 
 public class ErrorHandling {
     private final ConcurrencyController concurrencyController;

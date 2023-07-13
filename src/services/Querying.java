@@ -5,11 +5,11 @@ import models.DataRecord;
 import repository.DataIndexRepository;
 import repository.DataStorageRepository;
 
-public class Quering implements IQuering {
+public class Querying implements IQuering {
     private final DataStorageRepository dataStorageRepository;
     private final DataIndexRepository dataIndexRepository;
 
-    public Quering(DataStorageRepository dataStorageRepository, DataIndexRepository dataIndexRepository) {
+    public Querying(DataStorageRepository dataStorageRepository, DataIndexRepository dataIndexRepository) {
         this.dataStorageRepository = dataStorageRepository;
         this.dataIndexRepository = dataIndexRepository;
     }

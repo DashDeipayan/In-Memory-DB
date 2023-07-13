@@ -3,13 +3,13 @@ import controllers.ErrorHandling;
 import models.DataRecord;
 import repository.DataIndexRepository;
 import repository.DataStorageRepository;
-import services.Quering;
+import services.Querying;
 
 public class Main {
     public static void main(String[] args) throws Exception {
         DataStorageRepository dataStorage = new DataStorageRepository();
         DataIndexRepository indexing = new DataIndexRepository();
-        Quering querying = new Quering(dataStorage, indexing);
+        Querying querying = new Querying(dataStorage, indexing);
 
         ConcurrencyController concurrencyController = new ConcurrencyController(querying);
         ErrorHandling errorHandling = new ErrorHandling(concurrencyController);
