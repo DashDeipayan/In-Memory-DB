@@ -4,10 +4,9 @@ import models.DataRecord;
 import services.Quering;
 
 public class ErrorHandling {
-    private final Quering querying;
-
-    public ErrorHandling(Quering querying) {
-        this.querying = querying;
+    private final ConcurrencyController concurrencyController;
+    public ErrorHandling(ConcurrencyController concurrencyController) {
+        this.concurrencyController = concurrencyController;
     }
 
     public void insertRecord(DataRecord record) throws Exception {
@@ -15,10 +14,10 @@ public class ErrorHandling {
             throw new Exception("Invalid record: Missing key or value.");
         }
 
-        if (querying.retrieveDataRecord(record.getKey()) != null) {
+        if (concurrencyController.retrieveRecord(record.getKey()) != null) {
             throw new Exception("Record with the same key already exists.");
         }
 
-        querying.insertDataRecord(record);
+        concurrencyController.insertRecord(record);
     }
 }

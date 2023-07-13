@@ -1,4 +1,4 @@
-import controllers.ConcurrencyControl;
+import controllers.ConcurrencyController;
 import controllers.ErrorHandling;
 import models.DataRecord;
 import repository.DataIndexRepository;
@@ -10,9 +10,9 @@ public class Main {
         DataStorageRepository dataStorage = new DataStorageRepository();
         DataIndexRepository indexing = new DataIndexRepository();
         Quering querying = new Quering(dataStorage, indexing);
-        ErrorHandling errorHandling = new ErrorHandling(querying);
-        ConcurrencyControl concurrencyControl = new ConcurrencyControl(querying);
 
+        ConcurrencyController concurrencyController = new ConcurrencyController(querying);
+        ErrorHandling errorHandling = new ErrorHandling(concurrencyController);
         try {
             // INSERTED TWO RECORDS
             DataRecord record1 = new DataRecord("key1", "value1");
@@ -21,8 +21,8 @@ public class Main {
             errorHandling.insertRecord(record2);
 
             // RETRIEVED TWO RECORDS
-            DataRecord retrievedRecord1 = concurrencyControl.retrieveRecord("key1");
-            DataRecord retrievedRecord2 = concurrencyControl.retrieveRecord("key2");
+            DataRecord retrievedRecord1 = concurrencyController.retrieveRecord("key1");
+            DataRecord retrievedRecord2 = concurrencyController.retrieveRecord("key2");
             System.out.println("--------RETRIEVING TWO RECORDS--------");
             System.out.println(retrievedRecord1.toString());
             System.out.println(retrievedRecord2.toString());
@@ -30,18 +30,18 @@ public class Main {
             // UPDATED TWO RECORDS
             retrievedRecord1.setValue("newValue1");
             retrievedRecord2.setValue("newValue2");
-            concurrencyControl.updateRecord(retrievedRecord1);
-            concurrencyControl.updateRecord(retrievedRecord2);
+            concurrencyController.updateRecord(retrievedRecord1);
+            concurrencyController.updateRecord(retrievedRecord2);
             System.out.println("--------UPDATING TWO RECORDS--------");
             System.out.println(retrievedRecord1);
             System.out.println(retrievedRecord2);
 
             // DELETED ONE RECORD
-            concurrencyControl.deleteRecord("key1");
-            DataRecord hasRecord = concurrencyControl.retrieveRecord("key1");
+            concurrencyController.deleteRecord("key1");
+            DataRecord hasRecord = concurrencyController.retrieveRecord("key1");
             System.out.println("--------DELETED ONE RECORDS--------");
             System.out.println(hasRecord);
-            System.out.println(concurrencyControl.retrieveRecord("key2"));
+            System.out.println(concurrencyController.retrieveRecord("key2"));
 
             // INDEXING
             indexing.createIndex("field1");

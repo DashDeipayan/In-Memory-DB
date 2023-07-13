@@ -26,6 +26,6 @@ public class DataRecord {
     }
     @Override
     public String toString() {
-        return "Record [key=" + key + ", value=" + value + "]";
+        return "[key=" + key + ", value=" + value + "]";
     }
 }

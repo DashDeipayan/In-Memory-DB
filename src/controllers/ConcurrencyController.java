@@ -3,10 +3,10 @@ package controllers;
 import models.DataRecord;
 import services.Quering;
 
-public class ConcurrencyControl {
+public class ConcurrencyController {
     private final Quering quering;
 
-    public ConcurrencyControl(Quering quering) {
+    public ConcurrencyController(Quering quering) {
         this.quering = quering;
     }
     public synchronized DataRecord retrieveRecord(String key) {
