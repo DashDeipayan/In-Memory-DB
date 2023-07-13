@@ -1,11 +1,11 @@
 package services;
 
-import implementation.IQuering;
+import implementation.IQuerying;
 import models.DataRecord;
 import repository.DataIndexRepository;
 import repository.DataStorageRepository;
 
-public class Querying implements IQuering {
+public class Querying implements IQuerying {
     private final DataStorageRepository dataStorageRepository;
     private final DataIndexRepository dataIndexRepository;
 

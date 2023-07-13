@@ -3,7 +3,7 @@ package implementation;
 import models.DataRecord;
 import repository.DataStorageRepository;
 
-public interface IQuering {
+public interface IQuerying {
     public DataRecord retrieveDataRecord(String key);
     public void insertDataRecord(DataRecord record);
     public void updateDataRecord(DataRecord record);
